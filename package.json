@@ -1,0 +1,25 @@
+{
+    "name": "crystal-node-mysql",
+    "version": "1.0.1",
+    "description": "crystal-node框架使用的mysql连接库",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/crystalray1984/crystal-node-mysql.git"
+    },
+    "keywords": [
+        "crystal-node",
+        "mysql"
+    ],
+    "author": "crystal1984",
+    "bugs": {
+        "url": "https://github.com/crystalray1984/crystal-node-mysql/issues"
+    },
+    "homepage": "https://github.com/crystalray1984/crystal-node-mysql#readme",
+    "dependencies": {
+        "mysql2": "^1.6.5"
+    }
+}
