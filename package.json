@@ -1,8 +1,9 @@
 {
     "name": "crystal-node-mysql",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "description": "crystal-node框架使用的mysql连接库",
-    "main": "index.js",
+    "mainTypes": "./src/index.d.ts",
+    "main": "./src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
