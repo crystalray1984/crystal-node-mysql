@@ -1,17 +1,18 @@
 'use strict'
 
 const Mysql = require('mysql2')
-const Constrants = require('./constrants')
+const QueryFunctions = require('./query-functions')
 
 /**
  * 对连接的封装
  */
-class Connection {
+class Connection extends QueryFunctions {
     /**
      * 
      * @param {Mysql.Connection} conn 
      */
     constructor(conn) {
+        super()
         this._conn = conn
     }
 
@@ -137,7 +138,5 @@ class Connection {
         this._conn.resume()
     }
 }
-
-Connection.prototype.constrants = Constrants
 
 module.exports = Connection

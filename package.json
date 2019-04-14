@@ -1,6 +1,6 @@
 {
     "name": "crystal-node-mysql",
-    "version": "1.0.4",
+    "version": "1.0.10",
     "description": "crystal-node框架使用的mysql连接库",
     "mainTypes": "./src/index.d.ts",
     "main": "./src/index.js",
@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/crystalray1984/crystal-node-mysql#readme",
     "dependencies": {
+        "extend2": "^1.0.0",
         "mysql2": "^1.6.5"
     }
 }

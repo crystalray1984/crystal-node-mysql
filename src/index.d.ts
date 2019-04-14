@@ -35,6 +35,10 @@ declare namespace Mysql {
         execute(sql: string, values?: any): Promise<QueryResult>
         streaming(query: mysql.QueryOptions): mysql.Query
         streaming(sql: string, values?: any): mysql.Query
+        queryOne(query: mysql.QueryOptions): Promise<any>
+        queryOne(sql: string, values?: any): Promise<any>
+        queryField(query: mysql.QueryOptions): Promise<any>
+        queryField(sql: string, values?: any): Promise<any>
     }
 
     /**

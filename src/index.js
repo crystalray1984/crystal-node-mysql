@@ -5,14 +5,14 @@ const Constrants = require('./constrants')
 const Connection = require('./connection')
 const Pool = require('./pool')
 const SqlString = require('sqlstring')
+const merge = require('./merge-config')
 
 function createPool(config) {
-    const PoolConfig = require('mysql2/lib/pool_config.js')
-    return new Pool({ config: new PoolConfig(config) })
+    return new Pool(merge(config))
 }
 
 function createClient(opts) {
-    return new Connection(Mysql.createConnection(opts))
+    return new Connection(Mysql.createConnection(merge(opts)))
 }
 
 module.exports = createPool

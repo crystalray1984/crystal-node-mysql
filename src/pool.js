@@ -2,37 +2,74 @@
 
 const Connection = require('./connection')
 const Mysql = require('mysql2')
+const QueryFunctions = require('./query-functions')
 
-class Pool extends Mysql.Pool {
+class Pool extends QueryFunctions {
     constructor(options) {
-        super(options)
-        this._promise = super.promise()
+        super()
+        this.pool = Mysql.createPool(options)
     }
 
     getConnection() {
-        return this._promise.getConnection()
+        return new Promise((resolve, reject) => {
+            this.pool.getConnection((err, conn) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve(conn)
+                }
+            })
+        })
     }
 
     end() {
-        return this._promise.end()
+        return new Promise((resolve, reject) => {
+            this.pool.end((err) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve()
+                }
+            })
+        })
     }
 
     query(sql, values) {
-        return this._promise.query(sql, values)
+        return new Promise((resolve, reject) => {
+            this.pool.query(sql, values, (err, result) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve(result)
+                }
+            })
+        })
     }
 
     execute(sql, values) {
-        return this._promise.execute(sql, values)
+        return new Promise((resolve, reject) => {
+            this.pool.execute(sql, values, (err, result) => {
+                if (err) {
+                    reject(err)
+                }
+                else {
+                    resolve(result)
+                }
+            })
+        })
     }
 
     streaming(sql, values) {
-        return super.query(sql, values)
+        return this.pool.query(sql, values)
     }
 
     escape(val, stringifyObjects, timeZone) {
         return Mysql.escape(val
-            , typeof stringifyObjects === 'undefined' ? this.config.connectionConfig.stringifyObjects : stringifyObjects
-            , typeof timeZone === 'undefined' ? this.config.connectionConfig.timezone : timeZone)
+            , typeof stringifyObjects === 'undefined' ? this.pool.config.connectionConfig.stringifyObjects : stringifyObjects
+            , typeof timeZone === 'undefined' ? this.pool.config.connectionConfig.timezone : timeZone)
     }
 
     escapeId(val, forbidQualified) {
@@ -77,7 +114,7 @@ class Pool extends Mysql.Pool {
     }
 
     createClient() {
-        return new Connection(Mysql.createConnection(this.config.connectionConfig))
+        return new Connection(Mysql.createConnection(this.pool.config.connectionConfig))
     }
 }
 
