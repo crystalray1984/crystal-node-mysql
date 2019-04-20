@@ -8,9 +8,10 @@ declare namespace Mysql {
         info: string
         serverStatus: number
         warningStatus: number
+        changedRows: number
     }
 
-    type QueryResult = ResultSetHeader | any[]
+    type QueryResult = ResultSetHeader & any[]
 
     type IsolationLevel = 'repeatable read' | 'read uncommitted' | 'read committed' | 'serializable'
 

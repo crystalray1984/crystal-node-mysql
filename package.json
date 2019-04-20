@@ -1,6 +1,6 @@
 {
     "name": "crystal-node-mysql",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "crystal-node框架使用的mysql连接库",
     "mainTypes": "./src/index.d.ts",
     "main": "./src/index.js",
